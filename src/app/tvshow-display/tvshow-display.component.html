@@ -1,0 +1,63 @@
+<div class="container"> 
+<table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Action</th>
+        <!-- <th scope="col">url</th> -->
+        <th scope="col">Name</th>
+        <th scope="col">Season</th>        
+        <th scope="col">Number</th> 
+        <th scope="col">Airdate</th>
+        <th scope="col">Airtime</th>
+        <th scope="col">Airstamp</th>
+        <th scope="col">Runtime</th>
+        <th scope="col">Image</th>
+        <th scope="col">Summary</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tvshow of TvShow">
+        <th scope="row">
+          
+          
+          <button class="btn btn-outline-success btn-sm" 
+          (click)="open(content,tvshow.id)">Watch Details</button> 
+        </th>
+        <!-- <td>{{ tvshow.url }}</td> -->
+        <td>{{ tvshow.name }} <br> 
+        </td>
+        <td>{{ tvshow.season }}</td>
+        <td>{{ tvshow.number }}</td>
+        <td>{{ tvshow.airdate | date }}</td>
+        <td>{{ tvshow.airtime }}</td>
+        <td>{{ tvshow.airstamp }}</td>
+        <td>{{ tvshow.runtime }}</td>
+        <td>{{ tvshow.image}}</td>
+        <td>{{ tvshow.summary }}</td>
+      </tr>
+     
+    </tbody>
+  </table>
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Details of Shows</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group data" *ngFor="let data of filterData">
+          <span>Name: {{ data.name }}</span><br>
+           <span>Airdate: {{ data.airdate | date }}</span><br>
+           <span>Airtime: {{ data.airtime }}</span><br>
+            <span>Summary: {{ data.summary }}</span>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+    </div>
+  </ng-template>
+</div>
